@@ -1,0 +1,372 @@
+/* --- CSS Variables & Reset --- */
+:root {
+    --bg-color: #050505; /* Deep black */
+    --text-color: #ffffff;
+    --text-muted: #a1a1aa;
+    --highlight-color: #ff5252; /* Striking accent color like the reference */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    scroll-behavior: smooth; /* Smooth scrolling when clicking links */
+}
+
+/* --- Interactive Canvas --- */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Keeps it behind all text */
+    pointer-events: none; /* Stops the canvas from blocking clicks */
+}
+
+/* --- Top Left Root Menu --- */
+.side-nav {
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    z-index: 100;
+    display: flex;
+    flex-direction: row; /* Changed from column to row */
+    align-items: center; /* Vertically centers the menu and the links */
+}
+
+.root-logo {
+    color: var(--highlight-color); /* Makes the slash highly visible */
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: monospace;
+    background: rgba(255, 255, 255, 0.15); /* Slightly brighter default state */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Added a subtle border */
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.side-nav:hover .root-logo {
+    background: var(--highlight-color);
+    color: var(--bg-color);
+    border-color: var(--highlight-color);
+}
+
+.nav-dropdown {
+    margin-left: 20px; /* Pushes the links to the right of the logo */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-15px); /* Starts slightly to the left for a slide-out effect */
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: row; /* Aligns the links horizontally */
+    gap: 25px; /* Space between 'Projects' and 'Education' */
+}
+
+.side-nav:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0); /* Slides smoothly to the right */
+}
+
+.nav-dropdown a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-dropdown a:hover {
+    color: var(--text-color);
+}
+
+/* --- Hero Section --- */
+.hero {
+    height: 100vh; /* Takes up exactly 100% of the screen height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 4.5rem; /* Massive text like the reference */
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.highlight {
+    color: var(--highlight-color);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+}
+
+/* Add this right below your .hero p rule */
+.hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Spaces out the Projects and Education buttons */
+}
+
+.scroll-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 30px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.scroll-link:hover {
+    border-color: var(--text-color);
+    background: rgba(255,255,255,0.05);
+}
+
+/* --- Projects Section --- */
+.projects-section {
+    padding: 100px 20px;
+    min-height: 60vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--text-color);
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.project-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.project-details p {
+    color: var(--text-muted);
+    max-width: 500px;
+}
+
+.text-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.text-link:hover {
+    color: var(--highlight-color);
+}
+
+/* --- Footer --- */
+footer {
+    padding: 60px 20px 40px 20px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.button-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.copyright {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* --- Education Section Styling --- */
+.education-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px;
+}
+
+.centered-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centered-title {
+    border-bottom: none;
+    margin-bottom: 20px;
+}
+
+.degree-title {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.degree-desc {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.6;
+}
+
+/* --- Results Dropdown (Accordion) --- */
+.results-dropdown {
+    width: 100%;
+    max-width: 550px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: left; /* Keeps the list inside readable */
+}
+
+/* The clickable header */
+.results-dropdown summary {
+    padding: 18px 25px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-color);
+    list-style: none; /* Removes default browser arrow */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Hides default arrow in Safari/Chrome */
+.results-dropdown summary::-webkit-details-marker {
+    display: none; 
+}
+
+.results-dropdown summary:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--highlight-color);
+}
+
+/* The spinning arrow animation */
+.arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.results-dropdown[open] .arrow {
+    transform: rotate(180deg);
+}
+
+/* The list of grades inside */
+.results-list {
+    list-style: none;
+    padding: 0 25px 20px 25px;
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.results-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+}
+
+.results-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- Shared Centered Page Layout --- */
+.centered-page-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px;
+}
+
+/* --- Project Card Styling --- */
+/* --- Project Card Styling --- */
+.project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 650px;
+    text-align: center;
+    transition: border-color 0.3s ease; /* Removed the transform transition */
+}
+
+.project-card:hover {
+    border-color: rgba(255, 255, 255, 0.2); /* Keeps only the subtle border highlight */
+}
+
+.project-subtitle {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.project-desc {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* --- Certifications Styling --- */
+.certs-title {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.certifications-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Ensures they stack nicely on mobile screens */
+    width: 100%;
+}
